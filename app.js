@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const margan = require("morgan");
+const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
 dotenv.config();
