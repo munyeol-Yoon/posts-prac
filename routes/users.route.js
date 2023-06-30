@@ -65,4 +65,25 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// 사용자 상세 조회
+router.get("/:userId", async (req, res) => {
+  try {
+    const { userId } = req.body; // 왜 필요하지?
+
+    const user = await Users.findOne({
+      attributes: ["userId", "email", "createdAt", "updatedAt"],
+      include: [
+        {
+          model: UserInfos,
+          attributes: ["name", "age", "gender", "profileImage"],
+        },
+      ],
+    });
+
+    return res.status(200).json({ data: user });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 module.exports = router;
